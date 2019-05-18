@@ -1,68 +1,61 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# React App Tutorial
 
-## Available Scripts
+[![Build Status](https://travis-ci.com/immnk/react-app-tutorial.svg?branch=master)](https://travis-ci.com/immnk/react-app-tutorial) [![Dependencies](https://david-dm.org/immnk/react-app-tutorial.svg)](https://david-dm.org/) [![CodeFactor](https://www.codefactor.io/repository/github/immnk/react-app-tutorial/badge)](https://www.codefactor.io/repository/github/immnk/react-app-tutorial) [![Coverage Status](https://coveralls.io/repos/github/immnk/react-app-tutorial/badge.svg?branch=master)](https://coveralls.io/github/immnk/react-app-tutorial?branch=master) [![Tests](https://img.shields.io/badge/tests-not covered-red.svg)](https://github.com/immnk/react-app-tutorial/issues/)
 
-In the project directory, you can run:
+> Webpack Testing is a repository created with the intention of using `webpack` to compile JS modules. This project create `dist` folder during build and deploy its content to `gh-pages` using [![Travis CI](https://img.shields.io/badge/travis%20ci-enabled-brightgreen.svg)](https://travis-ci.com/immnk/react-app-tutorial)
 
-### `npm start`
+## Table of contents
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. [Set up](#set-up)
+2. [Test](#test)
+3. [Tasks](#tasks)
+4. [Useful websites](#useful-websites)
+5. [VS Code Plugins Recommended](#vs-code-plugins-recommended)
+6. [LICENSE](#license)
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Set up
 
-### `npm test`
+Follow the following steps:
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. `git clone https://github.com/immnk/logo-generator-app.git`
+2. `cd webpack_testing && npm install`
+3. For testing in dev `npm start`. To test prod `NODE_ENV=production npm start`
+4. Open `dist/index.html` in browser.
 
-### `npm run build`
+## Test
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Open webpack_testing folder where the code is cloned.
+2. Open command prompt at the folder and run `npm test`
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+## Tasks
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+All tasks and issues are listed as items in [Tasks & issues in repository Issues tab](https://github.com/immnk/react-app-tutorial/issues)
 
-### `npm run eject`
+- [x] Write a README file.
+- [x] Write JS modules and compile with webpack
+- [x] Make dist folder with html and js files compiled
+- [x] Create SCSS and compile them with webpack
+- [ ] Create API test method and set up
+- [x] Add CI/CD pipelines
+- [ ] Make automatic deployments on release branch
+- [x] Create unit test cases with Mocha(JS test framework) and Chai(assertion library)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## VS Code Plugins Recommended
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Beautify
+- Debugger for Chrome
+- ESLint
+- GitLens
+- IntelliSense for CSS class names
+- markdownlint
+- vscode-icons
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Useful websites
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+1. Mock data - https://www.mockaroo.com/
+2. Background generator - https://cssgradient.io/gradient-backgrounds/
+3. Markdown tricks - https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 
-## Learn More
+## License
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+[MIT License](https://github.com/immnk/react-app-tutorial/blob/master/LICENSE)
