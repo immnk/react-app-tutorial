@@ -3,7 +3,7 @@ import './Display.css';
 
 function Display(props) {
     return (
-        <div>{props.message}</div>
+        <div className="messageBox">{props.message}</div>
     );
 }
 

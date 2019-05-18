@@ -1,4 +1,9 @@
-div {
-  padding: 24px;
-  background: #F21B3F;
+.menu {
+    margin: 0 0 12px;
+    padding: 12px;
+    background: #F21B3F;
+}
+
+.menu li {
+    list-style-type: none;
 }

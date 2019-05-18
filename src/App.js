@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
-import Button from './Button/Button';
-import Display from './Display/Display';
+import Lesson1 from './Lesson1/Lesson1';
+import Lesson2 from './Lesson2/Lesson2';
 import './App.css';
 
 function App() {
-  const [counter, setCounter] = useState(0);
-  const incrementCounter = (incrementValue) => setCounter(counter + incrementValue);
-  
+  const [lessonNumber, setLesson] = useState(1);
+  const changeLesson = (lessonNumber) => setLesson(lessonNumber);
   return (
     <div>
-      <Button onClickEvent={incrementCounter} increment={1}/>
-      <Button onClickEvent={incrementCounter} increment={5}/>
-      <Button onClickEvent={incrementCounter} increment={10}/>
-      <Display message={counter}/>
+      <h1>React Apps built as per lessons</h1>
+      <code>Click on the lesson to move between</code>
+      <ul className="menu">
+        <li><button onClick={()=> changeLesson(1)}>Lesson 1</button></li>
+        <li><button onClick={()=> changeLesson(2)}>Lesson 2</button></li>
+      </ul>
+      { lessonNumber === 1 ? <Lesson1 /> : null }
+      { lessonNumber === 2 ? <Lesson2 /> : null }
     </div>
   );
 }

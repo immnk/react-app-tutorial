@@ -1,4 +1,5 @@
-div {
+.messageBox {
+    margin: 12px;
     font-size: 24px;
     color: #fff;
 }
