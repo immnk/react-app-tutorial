@@ -4,7 +4,7 @@ import Lesson2 from './Lesson2/Lesson2';
 import './App.css';
 
 function App() {
-  const [lessonNumber, setLesson] = useState(1);
+  const [lessonNumber, setLesson] = useState(2);
   const changeLesson = (lessonNumber) => setLesson(lessonNumber);
   return (
     <div>
@@ -15,7 +15,7 @@ function App() {
         <li><button onClick={()=> changeLesson(2)}>Lesson 2</button></li>
       </ul>
       { lessonNumber === 1 ? <Lesson1 /> : null }
-      { lessonNumber === 2 ? <Lesson2 /> : null }
+      { lessonNumber === 2 ? <Lesson2 precision={7}/> : null }
     </div>
   );
 }
