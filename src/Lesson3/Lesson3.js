@@ -1,5 +1,6 @@
 import React from 'react';
 import './Lesson3.scss';
+// eslint-disable-next-line no-unused-vars
 import { async } from 'q';
 
 class CardList extends React.Component {
@@ -36,7 +37,7 @@ class Form extends React.Component {
         this.props.onResponse(response);
         this.setState({ userName: '' });
     };
-
+    handleOnChange = (event) => this.setState({ userName: event.target.value });
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
@@ -44,7 +45,7 @@ class Form extends React.Component {
                     type="text" 
                     placeholder="Github username" 
                     value = {this.state.userName}
-                    onChange = {event => this.setState({ userName: event.target.value })}
+                    onChange = {this.handleOnChange}
                     required 
                 />
                 <button className="button add-card-btn">Search and Add Card</button>
