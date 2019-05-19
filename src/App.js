@@ -12,9 +12,9 @@ function App() {
       <h1>React Apps built as per lessons</h1>
       <code>Click on the lesson to move between</code>
       <ul className="menu">
-        <li><button className="lesson" onClick={()=> changeLesson(1)}>Lesson 1</button></li>
-        <li><button className="lesson" onClick={()=> changeLesson(2)}>Lesson 2</button></li>
-        <li><button className="lesson" onClick={()=> changeLesson(3)}>Lesson 3</button></li>
+        <li><button className="button" onClick={()=> changeLesson(1)}>Lesson 1</button></li>
+        <li><button className="button" onClick={()=> changeLesson(2)}>Lesson 2</button></li>
+        <li><button className="button" onClick={()=> changeLesson(3)}>Lesson 3</button></li>
       </ul>
       { lessonNumber === 1 ? <Lesson1 /> : null }
       { lessonNumber === 2 ? <Lesson2 precision={7}/> : null }

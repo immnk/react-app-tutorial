@@ -11,7 +11,7 @@ class CardList extends React.Component {
     render() {
         return (
             <div>
-                { testData.map(profile => <Card {...profile}/>) }
+                { this.props.profiles.map(profile => <Card {...profile}/>) }
             </div>
         );
     }
@@ -32,12 +32,25 @@ class Card extends React.Component {
     }
 }
 
+class Form extends React.Component {
+    render() {
+        return (
+            <form action="">
+                <input type="text" placeholder="Github username"/>
+                <button className="button add-card-btn">Search and Add Card</button>
+            </form>
+        )
+    }
+}
+
 class Lesson3 extends React.Component {
+    
     render() {
         return(
             <div>
                 <h2 className="header">{this.props.title}</h2>
-                <CardList />
+                <Form />
+                <CardList profiles={testData}/>
             </div>       
         );
     }
