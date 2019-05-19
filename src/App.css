@@ -2,6 +2,7 @@
     margin: 0 0 12px;
     padding: 12px;
     background: #F21B3F;
+    display: flex;
 }
 
 .menu li {

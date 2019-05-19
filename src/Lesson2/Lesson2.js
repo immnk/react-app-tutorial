@@ -1,4 +1,5 @@
 import React from 'react';
+import './Lesson2.css';
 
 function Lesson2({precision}) {
     const circle = {
@@ -22,7 +23,7 @@ function Lesson2({precision}) {
     const {temp1, temp2, details} = person;
 
     return (
-        <div>
+        <div className="lesson2">
             <h3>Lesson 2</h3>
             <pre>{circleArea(circle, {precision: precision})}</pre>
             <pre>Array Destructuring: { firstValue } { thirdValue } </pre>
