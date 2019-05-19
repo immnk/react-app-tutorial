@@ -44,13 +44,16 @@ class Form extends React.Component {
 }
 
 class Lesson3 extends React.Component {
-    
+    state = {
+        profiles: testData
+    }
+
     render() {
         return(
             <div>
                 <h2 className="header">{this.props.title}</h2>
                 <Form />
-                <CardList profiles={testData}/>
+                <CardList profiles={this.state.profiles}/>
             </div>       
         );
     }
