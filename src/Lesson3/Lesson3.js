@@ -1,5 +1,6 @@
 import React from 'react';
 import './Lesson3.scss';
+import { async } from 'q';
 
 const testData = [
     {name: "Dan Abramov", avatar_url: "https://avatars0.githubusercontent.com/u/810438?v=4", company: "@facebook"},
@@ -11,7 +12,7 @@ class CardList extends React.Component {
     render() {
         return (
             <div>
-                { this.props.profiles.map(profile => <Card {...profile}/>) }
+                { this.props.profiles.map(profile => <Card key={profile.id} {...profile}/>) }
             </div>
         );
     }
@@ -33,10 +34,25 @@ class Card extends React.Component {
 }
 
 class Form extends React.Component {
+    state = { userName: '' }
+    handleSubmit = async (event) => {
+        event.preventDefault();
+        const request = await fetch(`https://api.github.com/users/${this.state.userName}`);
+        const response = await request.json();
+        this.props.onResponse(response);
+        this.setState({ userName: '' });
+    };
+
     render() {
         return (
-            <form action="">
-                <input type="text" placeholder="Github username"/>
+            <form onSubmit={this.handleSubmit}>
+                <input 
+                    type="text" 
+                    placeholder="Github username" 
+                    value = {this.state.userName}
+                    onChange = {event => this.setState({ userName: event.target.value })}
+                    required 
+                />
                 <button className="button add-card-btn">Search and Add Card</button>
             </form>
         )
@@ -45,16 +61,22 @@ class Form extends React.Component {
 
 class Lesson3 extends React.Component {
     state = {
-        profiles: testData
-    }
-
+        profiles: []
+    };
+    formResponsHandler = (userInfo) => {
+        console.log(userInfo);
+        this.setState(prevState => ({
+            profiles : [...prevState.profiles, userInfo] 
+         })
+        );
+    };
     render() {
         return(
             <div>
                 <h2 className="header">{this.props.title}</h2>
-                <Form />
+                <Form onResponse={this.formResponsHandler}/>
                 <CardList profiles={this.state.profiles}/>
-            </div>       
+            </div>   
         );
     }
 }
