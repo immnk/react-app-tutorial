@@ -3,6 +3,7 @@
     padding: 12px;
     background: #F21B3F;
     display: flex;
+    flex-wrap: wrap;
 }
 
 .menu li {
