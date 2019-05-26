@@ -25,7 +25,7 @@ function Lesson2({precision}) {
     return (
         <div className="lesson2">
             <h3>Lesson 2</h3>
-            <pre>{circleArea(circle, {precision: precision})}</pre>
+            <pre>Object Destructuring: {circleArea(circle, {precision: precision})}</pre>
             <pre>Array Destructuring: { firstValue } { thirdValue } </pre>
             <pre>Rest operator: { restOfItems }</pre>
             <pre>{temp1} {temp2} {details}</pre>
