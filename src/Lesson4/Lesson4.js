@@ -13,7 +13,7 @@ const PlayNumber = props => (
     <button 
         className="number" 
         style={{ backgroundColor: colors[props.status]}}
-        onClick={()=> { console.log(`Button ${props.number}`); }}
+        onClick={()=> { props.onClick(props.number, props.status); }}
     >
         {props.number}
     </button>
@@ -36,6 +36,31 @@ const Lesson4 = (props) => {
 
         return 'avaiable';
     }
+
+    const onNumberClick = (number, status) => {
+        if(status === 'used') {
+            return;
+        }
+        let newCandidateNums;
+        if(candidateNums.includes(number)) {
+            newCandidateNums = candidateNums.filter(
+                n => n !== number
+            );
+        } else {
+            newCandidateNums = candidateNums.concat(number);
+        }
+        if(utils.sum(newCandidateNums) !== stars) {
+            setCandidateNums(newCandidateNums);
+        } else {
+            const newAvailableNums = availableNums.filter(
+                n => !newCandidateNums.includes(n)
+            );
+            setStars(utils.randomSumIn(newAvailableNums, 9));
+            setAvailableNums(newAvailableNums);
+            setCandidateNums([]);
+        }
+    }
+
     return (
         <div>
             <h3>{props.title}</h3>
@@ -52,7 +77,8 @@ const Lesson4 = (props) => {
                             <PlayNumber 
                                 key={number} 
                                 number={number} 
-                                status={numberStatus(number)} 
+                                status={numberStatus(number)}
+                                onClick={onNumberClick}
                             />
                         )}
                     </div>
