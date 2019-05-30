@@ -1,7 +1,41 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './Lesson4.scss';
 
+const StarsDisplay = props => (
+    <>
+        {utils.range(1, props.count).map(starId => 
+            <div key={starId} className="star" />
+        )}
+    </>
+);
+
+const PlayNumber = props => (
+    <button 
+        className="number" 
+        style={{ backgroundColor: colors[props.status]}}
+        onClick={()=> { console.log(`Button ${props.number}`); }}
+    >
+        {props.number}
+    </button>
+);
+
 const Lesson4 = (props) => {
+    const [stars, setStars] = useState(utils.random(1,9));
+    const [availableNums, setAvailableNums] = useState(utils.range(1,9));
+    const [candidateNums, setCandidateNums] = useState([]);
+
+    const candidatesAreWrong = utils.sum(candidateNums) > stars;
+
+    const numberStatus = number => {
+        if(!availableNums.includes(number)) {
+            return 'used';
+        }
+        if(candidateNums.includes(number)) {
+            return candidatesAreWrong ? 'wrong' : 'candidate';
+        }
+
+        return 'avaiable';
+    }
     return (
         <div>
             <h3>{props.title}</h3>
@@ -11,26 +45,16 @@ const Lesson4 = (props) => {
                 </div>
                 <div className="body">
                     <div className="left">
-                        <div className="star" />
-                        <div className="star" />
-                        <div className="star" />
-                        <div className="star" />
-                        <div className="star" />
-                        <div className="star" />
-                        <div className="star" />
-                        <div className="star" />
-                        <div className="star" />
+                        <StarsDisplay count={stars}/>
                     </div>
                     <div className="right">
-                        <button className="number">1</button>
-                        <button className="number">2</button>
-                        <button className="number">3</button>
-                        <button className="number">4</button>
-                        <button className="number">5</button>
-                        <button className="number">6</button>
-                        <button className="number">7</button>
-                        <button className="number">8</button>
-                        <button className="number">9</button>
+                        {utils.range(1,9).map(number => 
+                            <PlayNumber 
+                                key={number} 
+                                number={number} 
+                                status={numberStatus(number)} 
+                            />
+                        )}
                     </div>
                 </div>
                 <div className="timer">Time Remaining: 10</div>
