@@ -1,28 +1,45 @@
 import React, {useState} from 'react';
 import './Lesson4.scss';
 
+const StarsDisplay = props => (
+    <>
+        {utils.range(1, props.count).map(starId => 
+            <div key={starId} className="star" />
+        )}
+    </>
+);
+
 const PlayNumber = props => (
     <button 
         className="number" 
-        style={{backgroundColor: colors[props.status]}}
-        onClick={()=> props.onClick(props.number, props.status)}
+        style={{ backgroundColor: colors[props.status]}}
+        onClick={()=> { props.onClick(props.number, props.status); }}
     >
         {props.number}
     </button>
 );
 
-const StarDisplay = props => (
-    utils.range(1, props.count).map(starId =>
-        <div className="star" key={starId}></div>
-    )
-);
+const PlayAgain = props => (
+    <div className="game-done">
+        <button onClick={props.onClick}>Play Again</button>
+    </div>
+)
 
 const Lesson4 = (props) => {
+    // Hooks and side effects
     const [stars, setStars] = useState(utils.random(1,9));
     const [availableNums, setAvailableNums] = useState(utils.range(1,9));
     const [candidateNums, setCandidateNums] = useState([]);
 
+    // Conditions
     const candidatesAreWrong = utils.sum(candidateNums) > stars;
+    const gameIsDone = availableNums.length === 0;
+
+    const resetGame = () => {
+        setStars(utils.random(1,9));
+        setAvailableNums(utils.range(1,9));
+        setCandidateNums([]);
+    }
 
     const numberStatus = number => {
         if(!availableNums.includes(number)) {
@@ -38,10 +55,11 @@ const Lesson4 = (props) => {
         if(status === 'used') {
             return;
         }
-
-        const newCandidateNums = status === 'available'
-            ? candidateNums.concat(number)
-            : candidateNums.filter(n => n !== number);
+        const newCandidateNums =
+            status === 'available'
+                ? candidateNums.concat(number)
+                : candidateNums.filter( n => n !== number );
+        
         if(utils.sum(newCandidateNums) !== stars) {
             setCandidateNums(newCandidateNums);
         } else {
@@ -50,7 +68,7 @@ const Lesson4 = (props) => {
             );
             setStars(utils.randomSumIn(newAvailableNums, 9));
             setAvailableNums(newAvailableNums);
-            setCandidateNums([]); 
+            setCandidateNums([]);
         }
     }
 
@@ -63,21 +81,20 @@ const Lesson4 = (props) => {
                 </div>
                 <div className="body">
                     <div className="left">
-                        {
-                            <StarDisplay count={stars}/>
+                        {gameIsDone
+                            ? <PlayAgain onClick={resetGame}/>
+                            : <StarsDisplay count={stars}/>
                         }
                     </div>
                     <div className="right">
-                        {
-                            utils.range(1,9).map(number => 
-                                <PlayNumber 
-                                    key={number} 
-                                    number={number}
-                                    status={numberStatus(number)}
-                                    onClick={onNumberClick}
-                                />
-                            )
-                        }
+                        {utils.range(1,9).map(number => 
+                            <PlayNumber 
+                                key={number} 
+                                number={number} 
+                                status={numberStatus(number)}
+                                onClick={onNumberClick}
+                            />
+                        )}
                     </div>
                 </div>
                 <div className="timer">Time Remaining: 10</div>
