@@ -32,10 +32,10 @@ All tasks and issues are listed as items in [Tasks & issues in repository Issues
 - [x] Write a README file.
 - [x] Add CI/CD pipelines
 - [x] Make automatic deployments on release branch
-- [ ] Create lessons and create links to view them.
-- [ ] Refactor code to use classes instead of functions.
-- [ ] Create SCSS styles and compile them with webpack
-- [ ] Create API test method and set up
+- [x] Create lessons and create links to view them.
+- [x] Refactor code to use classes instead of functions.
+- [x] Create SCSS styles and compile them with webpack
+- [x] Create API test method and set up
 - [ ] Create unit test cases proper libraries.
 
 ## VS Code Plugins Recommended
