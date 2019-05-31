@@ -6,7 +6,7 @@ const PlayAgain = props => (
     </div>
 );
 
-module.exports = PlayAgain;
+export default PlayAgain;
 // Same as doing exports.PlayAgain = PlayAgain
 // Same as doing export default PlayAgain
 
