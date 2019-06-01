@@ -5,7 +5,7 @@ import utils from './Util';
 import PlayNumber from './PlayNumber';
 import PlayAgain from './PlayAgain';
 
-const Lesson4 = (props) => {
+const Game = (props) => {
     // Hooks and side effects
     const [stars, setStars] = useState(utils.random(1,9));
     const [availableNums, setAvailableNums] = useState(utils.range(1,9));
@@ -26,12 +26,6 @@ const Lesson4 = (props) => {
     const gameStatus = availableNums.length === 0
         ? 'won'
         : secondsLeft === 0 ? 'lost' : 'active';
-
-    const resetGame = () => {
-        setStars(utils.random(1,9));
-        setAvailableNums(utils.range(1,9));
-        setCandidateNums([]);
-    }
 
     const numberStatus = number => {
         if(!availableNums.includes(number)) {
@@ -65,8 +59,7 @@ const Lesson4 = (props) => {
     }
 
     return (
-        <div>
-            <h3>{props.title}</h3>
+        <>
             <div className="game">
                 <div className="help">
                     Pick 1 or more numbers that sum to the number of stars
@@ -74,7 +67,7 @@ const Lesson4 = (props) => {
                 <div className="body">
                     <div className="left">
                         {gameStatus !== 'active'
-                            ? <PlayAgain onClick={resetGame} gameStatus={gameStatus}/>
+                            ? <PlayAgain onClick={props.resetGame} gameStatus={gameStatus}/>
                             : <StarsDisplay count={stars}/>
                         }
                     </div>
@@ -91,7 +84,18 @@ const Lesson4 = (props) => {
                 </div>
                 <div className="timer">Time Remaining: {secondsLeft }</div>
             </div>
-        </div>
+        </>
+    );
+}
+
+const Lesson4 = (props) => {
+    const [gameId, setGameId] = useState(1);
+
+    return (
+        <>
+            <h3>{props.title}</h3>
+            <Game key={gameId} resetGame={() => setGameId(gameId + 1)}/>
+        </>
     );
 }
 
