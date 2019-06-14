@@ -21,6 +21,10 @@ Follow the following steps:
 2. `cd react-app-tutorial && npm install`
 3. For testing in dev `npm start`.
 
+To create a bew React application we use `npx create-react-app <app-name>` and this is similar to using `npm i -g create-react-app && create-react-app <app-name>`
+
+The x in npx is for execution.
+
 ## Deploy
 
 `Travis CI` takes care of deploying to gh-pages in GitHub. Although you can check the steps in `travis.yml` file in root.
