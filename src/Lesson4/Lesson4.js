@@ -5,13 +5,17 @@ import utils from './Util';
 import PlayNumber from './PlayNumber';
 import PlayAgain from './PlayAgain';
 
-const Game = (props) => {
+// Custom Hooks
+// it is basically grouping all your state into single place
+const useGameState = () => {
     // Hooks and side effects
     const [stars, setStars] = useState(utils.random(1,9));
     const [availableNums, setAvailableNums] = useState(utils.range(1,9));
     const [candidateNums, setCandidateNums] = useState([]);
     const [secondsLeft, setSecondsLeft] = useState(10);
 
+    // Side effects are a function that will be available when the state changes.
+    // return a function from side effect that will be called after the second state change happens
     useEffect(()=> {
         if(secondsLeft > 0 && availableNums.length > 0) {
             const timerId = setTimeout(() => {
@@ -19,7 +23,32 @@ const Game = (props) => {
             }, 1000);
             return () => { clearTimeout(timerId); }
         }
-    })
+    });
+
+    const setGameState = (newCandidateNums) => {
+        if(utils.sum(newCandidateNums) !== stars) {
+            setCandidateNums(newCandidateNums);
+        } else {
+            const newAvailableNums = availableNums.filter(
+                n => !newCandidateNums.includes(n)
+            );
+            setStars(utils.randomSumIn(newAvailableNums, 9));
+            setAvailableNums(newAvailableNums);
+            setCandidateNums([]);
+        }
+    }
+
+    return { stars, availableNums, candidateNums, secondsLeft, setGameState };
+}
+
+const Game = (props) => {
+    const {
+        stars,
+        availableNums,
+        candidateNums,
+        secondsLeft,
+        setGameState
+    } = useGameState();
 
     // Conditions
     const candidatesAreWrong = utils.sum(candidateNums) > stars;
@@ -46,19 +75,11 @@ const Game = (props) => {
                 ? candidateNums.concat(number)
                 : candidateNums.filter( n => n !== number );
         
-        if(utils.sum(newCandidateNums) !== stars) {
-            setCandidateNums(newCandidateNums);
-        } else {
-            const newAvailableNums = availableNums.filter(
-                n => !newCandidateNums.includes(n)
-            );
-            setStars(utils.randomSumIn(newAvailableNums, 9));
-            setAvailableNums(newAvailableNums);
-            setCandidateNums([]);
-        }
+        setGameState(newCandidateNums);
     }
 
     return (
+        // <> is called react fragment. It combines your dom children under one parent without creating parent
         <>
             <div className="game">
                 <div className="help">
@@ -73,6 +94,7 @@ const Game = (props) => {
                     </div>
                     <div className="right">
                         {utils.range(1,9).map(number => 
+                            // key attribute is used to unmount and remount a component in React
                             <PlayNumber 
                                 key={number} 
                                 number={number} 
